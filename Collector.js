@@ -41,3 +41,5 @@ Collector = {
 		});
 	}
 };
+
+module.exports = Collector;
