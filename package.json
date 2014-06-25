@@ -1,0 +1,16 @@
+{
+  "name": "influxer",
+  "version": "0.0.1",
+  "description": "Send random stuff to influxdb",
+  "main": "mymac.js",
+  "dependencies": {
+    "influx": "^1.0.1",
+    "exec-sync": "^0.1.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Boopathi Rajaa",
+  "license": "ISC"
+}
