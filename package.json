@@ -9,7 +9,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "pm2 start index.js -o stdout.log -e error.log",
+    "stop": "pm2 stop index.js",
+    "status": "pm2 status index.js"
   },
   "author": "Boopathi Rajaa",
   "license": "ISC"

@@ -7,15 +7,22 @@ var influx = require("influx"),
 		username: "username",
 		password: "password",
 		database: "database"
-	},
-	client = influx();
+	};
 
 if(fs.existsSync('./config.json'))
 	config = JSON.parse(fs.readFileSync("./config.json"));
 
+var client = influx(config);
+
 Collector = {
 	registry: [],
 	series: {},
+	log: null,
+	setlog: function(fn) {
+		if(typeof fn === "function")
+			Collector.log = fn;
+		//else just ignore the bastard trying to break things
+	},
 	flush: function() {
 		Collector.series = {};
 	},
@@ -37,7 +44,9 @@ Collector = {
 	},
 	send: function() {
 		client.writeSeries(Collector.series, {}, function(){
-			console.log(new Date() + " [write] DONE");
+			if(typeof Collector.log === "function") {
+				Collector.log.apply(this, [new Date()]);
+			}
 		});
 	}
 };
