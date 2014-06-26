@@ -10,9 +10,14 @@ Collector.register("memory_osx");
 Collector.register("random");
 
 //Overwrite Collector.log to get log
-Collector.setlog(function(time) {
-	console.log(time);
-});
+Collector.setlog( (function() {
+	var count = 0;
+	return function(time) {
+		process.stdout.clearLine();
+		process.stdout.cursorTo(0);
+		process.stdout.write("Last point written at [" + time + "]; Total points = " + ++count);
+	};
+})() );
 
 function infinite() {
 	Collector.iterate();
